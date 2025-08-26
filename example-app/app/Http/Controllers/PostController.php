@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -13,8 +13,9 @@ class PostController extends Controller
         return view('post.create');
     }
 
-    public function store(Request $request)
+    public function update(Request $request, Post $post)
     {
+        // Gate::authorize('test');
         $validated = $request->validate([
             'title' => 'required|max:20',
             'body' => 'required|max:400',
@@ -22,8 +23,10 @@ class PostController extends Controller
 
         $validated['user_id'] = auth()->id();
 
-        $post = Post::create($validated);
-        $request->session()->flash('message', '保存しました');
+        $post->update($validated);
+
+        // $post = Post::create($validated);
+        $request->session()->flash('message', '更新しました');
         return back();
     }
 
@@ -32,5 +35,15 @@ class PostController extends Controller
         $posts = Post::where('user_id', auth()->id())->get();
         // $posts = Post::whereDate('created_at', '<=', '2025-08-27')->get();
         return view('post.index', compact('posts'));
+    }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('post.show', compact('post'));
+    }
+    public function edit(Post $post)
+    {
+        return view('post.edit', compact('post'));
     }
 }

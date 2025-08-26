@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('post/create', [PostController::class, 'create']);
+// Route::get('post/create', [PostController::class, 'create']);
 
 Route::post('post', [PostController::class, 'store'])
     ->name('post.store');
@@ -31,6 +31,18 @@ Route::post('post', [PostController::class, 'store'])
 Route::get('post', [PostController::class, 'index']);
 
 Route::get('post/create', [PostController::class, 'create'])
-    ->middleware( ['auth','admin'] );
+    ->middleware(['auth', 'admin']);
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('post/show/{post}', [PostController::class, 'show'])
+    ->name('post.show');
+
+Route::get('post/{post}/edit', [PostController::class, 'edit'])
+    ->name('post.edit');
+Route::patch('post/{post}', [PostController::class, 'update'])
+    ->name('post.update');
 
 require __DIR__ . '/auth.php';
