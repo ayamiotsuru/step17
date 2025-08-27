@@ -5,9 +5,9 @@
         </h2>
     </x-slot>
     <div class="max-auto px-6">
-        @if(session('message'))
+        @if (session('message'))
             <div class="text-red-600 font-bold">
-                {{session('message')}}
+                {{ session('message') }}
             </div>
         @endif
         @foreach ($posts as $post)
@@ -29,5 +29,8 @@
                 </div>
             </div>
         @endforeach
+        <div class="mb-4">
+            {{ $posts->links() }}
+        </div>
     </div>
 </x-app-layout>
