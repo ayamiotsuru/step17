@@ -2,20 +2,29 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+// use App\Http\Controllers\TestController;
 use App\Http\Controllers\PostController;
 
-Route::get('test', [TestController::class, 'test'])
-    ->name('test');
+//コメントアウトした
+// Route::get('test', [TestController::class, 'test'])
+//     ->name('test');
+
+Route::resource('post', PostController::class);
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+//書き足した
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
+
+//コメントアウトした
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,27 +34,28 @@ Route::middleware('auth')->group(function () {
 
 // Route::get('post/create', [PostController::class, 'create']);
 
-Route::post('post', [PostController::class, 'store'])
-    ->name('post.store');
-
-Route::get('post', [PostController::class, 'index'])
-->name('post.index');
-
-Route::get('post/create', [PostController::class, 'create'])
-    ->middleware(['auth', 'admin']);
+//コメントアウトした
+// Route::post('post', [PostController::class, 'store'])
+//     ->name('post.store');
+// Route::get('post', [PostController::class, 'index'])
+// ->name('post.index');
+// Route::get('post/create', [PostController::class, 'create'])
+//     ->middleware(['auth', 'admin']);
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('post/show/{post}', [PostController::class, 'show'])
-    ->name('post.show');
+//コメントアウトした
+// Route::get('post/show/{post}', [PostController::class, 'show'])
+//     ->name('post.show');
 
-Route::get('post/{post}/edit', [PostController::class, 'edit'])
-    ->name('post.edit');
-Route::patch('post/{post}', [PostController::class, 'update'])
-    ->name('post.update');
-Route::delete('post/{post}', [PostController::class, 'destroy'])
-->name('post.destroy');
+//コメントアウトした
+// Route::get('post/{post}/edit', [PostController::class, 'edit'])
+//     ->name('post.edit');
+// Route::patch('post/{post}', [PostController::class, 'update'])
+//     ->name('post.update');
+// Route::delete('post/{post}', [PostController::class, 'destroy'])
+// ->name('post.destroy');
 
 require __DIR__ . '/auth.php';
