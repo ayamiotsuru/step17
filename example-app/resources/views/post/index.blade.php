@@ -30,6 +30,7 @@
                 </div>
             </div>
         @endforeach
+        {{-- ページネーション --}}
         <div class="mb-4">
             {{ $posts->links() }}
         </div>

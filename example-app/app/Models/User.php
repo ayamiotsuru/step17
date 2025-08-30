@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany(Post::class);
     }
+
+    //一つのユーザーは複数のコメントを持つことができる
+    public function comments() {
+        return $this->hasmany(Comment::class);
+    }
 }
