@@ -37,4 +37,25 @@
             </div>
         </div>
     </div>
+    {{-- コメント一覧 --}}
+    @forelse ($post->comments as $comment)
+        <div class="card mb-2">
+            <div class="card-body">
+                <p class="card-text">{{ $comment->content}}</p>
+                <p class="text-muted">投稿者:{{ $comment->user->name}}</p>
+            </div>
+        </div>
+    @empty
+        <p class="text-gray-500">まだコメントはありません。</p>
+    @endforelse
+    {{-- コメントフォーム --}}
+    <h3>コメントを投稿する</h3>
+    <form method="post" action="{{ route('comments.store', $post->id) }}" class="flex-2">
+        @csrf
+        <div class="mb-3">
+            <label for="content">コメント内容</label>
+            <textarea name="content" id="content" cols="30" rows="10" required></textarea>
+        </div>
+        <button type="submit">コメント投稿</button>
+    </form>
 </x-app-layout>

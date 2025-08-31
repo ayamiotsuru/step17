@@ -4,10 +4,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\TestController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 //コメントアウトした
 // Route::get('test', [TestController::class, 'test'])
 //     ->name('test');
+
+
 
 Route::resource('post', PostController::class);
 
@@ -57,5 +60,11 @@ Route::middleware('auth')->group(function () {
 //     ->name('post.update');
 // Route::delete('post/{post}', [PostController::class, 'destroy'])
 // ->name('post.destroy');
+
+
+//コメントを投稿するルート
+Route::post('post/{post}/comments', [CommentController::class, 'store'])
+->name('comments.store');
+
 
 require __DIR__ . '/auth.php';

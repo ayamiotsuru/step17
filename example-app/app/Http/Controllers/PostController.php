@@ -37,6 +37,8 @@ class PostController extends Controller
 
         $validated['user_id'] = auth()->id();
 
+        $post = Post::create($validated);
+
         $request->session()->flash('message', '保存しました');
         return redirect()->route('post.index');
     }
@@ -46,6 +48,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->load('comments.user');
         return view('post.show', compact('post'));
     }
 
