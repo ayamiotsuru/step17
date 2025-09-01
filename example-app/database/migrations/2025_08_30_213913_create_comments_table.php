@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
             //foreignIdは他のテーブルのIDのときに使用されるデータ型（符号なしの大きな整数）
             //onDelete('cascade')はもし参照先のpostsのレコードが削除されたら、関連するこのテーブルのレコードも自動で削除
-            //->constrained() を付けると Laravel は自動的に参照先のテーブルとカラムを推測
+            //->constrained() を付けると Laravel は自動的に参照先のテーブルとカラムを推測、これがないとonDelete('cascade') を付けても、外部キー制約は作られない。
             //post_idという書き方はpostsテーブルのidを参照しているという書き方。自動的にsをつけて参照するので、テーブル名側は複数形で問題ない。
         });
     }
