@@ -5,12 +5,18 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\TestController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SearchController;
 
 //コメントアウトした
 // Route::get('test', [TestController::class, 'test'])
 //     ->name('test');
 
-
+//リアルタイム検索の表示のためのルート
+Route::get('/post/search', [SearchController::class, 'showSearchForm'])
+->name('post.search.form');
+//リアルタイム検索のためのルート
+Route::get('/ajax/search', [SearchController::class, 'ajaxSearch'])
+->name('ajax.search');
 
 Route::resource('post', PostController::class);
 
