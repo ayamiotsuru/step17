@@ -50,7 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // postは配列の要素1つ分（1塊）を指す　例1回目：post = {id:1, title:"テスト1"} 2回目：post = {id:2, title:"テスト2"}
         data.forEach((post) => {
             const listItem = document.createElement("li"); // li要素を作成
-            listItem.textContent = post.title; // 配列のタイトルをセット
+            const linkItem = document.createElement("a"); // a要素を作成
+
+            linkItem.href = `/post/${post.id}`; // 個別ページへのリンク
+            linkItem.textContent = post.title; // 配列のタイトルをセット
+
+            listItem.appendChild(linkItem);// liの中にリンクを追加
             resultsList.appendChild(listItem); // resultsList（ul）の中にlistItem（li）を追加
         });
         } catch (error) {
