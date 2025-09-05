@@ -20,17 +20,21 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
+                <header class="bg-white shadow flex">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
+                    {{-- 検索フォームの読み込み --}}
+                    <x-search-form />
                 </header>
             @endisset
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                {{-- @stack('scripts') --}}
             </main>
         </div>
+    {{-- 検索フォーム用のjsを読み込み --}}
+    <script src="{{ asset('js/ajax-search.js') }}"></script>
     </body>
 </html>

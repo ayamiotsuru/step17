@@ -1,17 +1,10 @@
-// DOMContentLoadedイベントは、HTMLの構造（DOM）がすべて読み込まれたタイミングで発火
-// CSSや画像などのリソースが完全に読み込まれる前でも発火、JS が HTML 要素にアクセスできる状態になったタイミングで処理を開始
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById("search");
-    const resultsList = document.getElementById("results");
+document.querySelectorAll('.search-component').forEach((component) => {
+    const searchInput = component.querySelector(".search-input");
+    const resultsList = component.querySelector(".search-results");
 
     // 上記のsearchInputまたはresultsListが存在しなければ処理終了
     // このチェックを入れておくことで、別のページにこのjsを読み込んでも、エラーが出ずに安全に動作する。
     if (!searchInput || !resultsList) return;
-
-    // datasetはHTM要素のdata-属性にアクセスするオブジェクト。
-    // 属性名はハイフンをキャメルケースに変換する必要がある。data-ajax-url → dataset.ajaxUrl
-    // すなわちsearchInput.dataset.ajaxUrl;でsearch.blade.phpで記述している{{ route('ajax.search') }}でLaravel側で生成されたURLを取得している。（今回は/ajax/search）
-    const url = searchInput.dataset.ajaxUrl;
 
     // keyupイベント：キーを離したタイミングで発火
     // async functionで関数を非同期処理として定義、awaitが使えるように。
@@ -25,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
     try {
+        // datasetはHTM要素のdata-属性にアクセスするオブジェクト。
+        // 属性名はハイフンをキャメルケースに変換する必要がある。data-ajax-url → dataset.ajaxUrl
+        // すなわちsearchInput.dataset.ajaxUrl;でsearch.blade.phpで記述している{{ route('ajax.search') }}でLaravel側で生成されたURLを取得している。（今回は/ajax/search）
+        const url = searchInput.dataset.ajaxUrl;
         // tryの中に非同期処理を書く
         // awaitでその非同期処理が終わるまで次の処理を待機
         // fetch(url)：指定したURLにGETリクエストを送信。ルートで定義したURLの後ろに、クエリパラメータとして検索文字列を渡す。encodeURIComponent()で日本語や特殊文字も安全に送信。
