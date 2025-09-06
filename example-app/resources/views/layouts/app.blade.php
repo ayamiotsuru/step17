@@ -26,6 +26,7 @@
                     </div>
                     {{-- 検索フォームの読み込み --}}
                     <x-search-form />
+                    <x-search-form />
                 </header>
             @endisset
             <!-- Page Content -->

@@ -1,6 +1,11 @@
-document.querySelectorAll('.search-component').forEach((component) => {
-    const searchInput = component.querySelector(".search-input");
-    const resultsList = component.querySelector(".search-results");
+// 1ページに複数の検索フォーム（search-component）があっても、それぞれ独立して動かせるようにするための仕組み
+// CSSセレクタで一致する要素を全部取得し、配列のようなリスト（NodeList）を返す。
+// .forEach((任意の変数名) => { ... })は取得した要素リストを 1つずつ繰り返し処理する。
+// ↑任意の変数名は引数にあたる
+document.querySelectorAll('.search-component').forEach((searchBox) => {
+    // 引数searchBoxから渡ってきた要素の中でクラス名を検索し変数に代入している。
+    const searchInput = searchBox.querySelector(".search-input");
+    const resultsList = searchBox.querySelector(".search-results");
 
     // 上記のsearchInputまたはresultsListが存在しなければ処理終了
     // このチェックを入れておくことで、別のページにこのjsを読み込んでも、エラーが出ずに安全に動作する。

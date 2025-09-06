@@ -11,12 +11,12 @@ use App\Http\Controllers\SearchController;
 // Route::get('test', [TestController::class, 'test'])
 //     ->name('test');
 
-//リアルタイム検索の表示のためのルート
-Route::get('/post/search', [SearchController::class, 'showSearchForm'])
-->name('post.search.form');
 //リアルタイム検索のためのルート
 Route::get('/ajax/search', [SearchController::class, 'ajaxSearch'])
 ->name('ajax.search');
+//リアルタイム検索ページ（search.blade.php）表示のためのルート
+// Route::get('/post/search', [SearchController::class, 'showSearchForm'])
+// ->name('post.search.form');
 
 Route::resource('post', PostController::class);
 

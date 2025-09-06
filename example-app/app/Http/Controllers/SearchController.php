@@ -9,9 +9,11 @@ class SearchController extends Controller
 {
     //リアルタイム検索のためのコントローラー
     public function ajaxSearch(Request $request) {
+        // ユーザーがフォームやAJAXで送ったqueryの値を$queryに入れて後の検索処理などに使えるように設定
+        // query は単なる名前（キー）開発者が「検索ワード用の値だから query にする」と決めたもの。JavaScriptのfetchでも同じ名前を使う必要がある。
         $query = $request->input('query');
 
-        $request = [];// 返却用の変数を用意しておく。（空配列で初期化）
+        $request = [];// 空配列で初期化しておく。
 
         // $queryが空でなければ検索を実行(条件式の意味は0は検索対象で、nullと空文字''は除外)
         if (!empty($query)) {
@@ -25,10 +27,11 @@ class SearchController extends Controller
         return response()->json($results);// コントローラで取得したデータをJSON形式に変換して返す(非同期通信のため)
     }
 
-    public function showSearchForm()
-    {
-        return view('post.search'); // resources/views/posts/search.blade.php
-    }
+    //リアルタイム検索ページ（search.blade.php）表示のため
+    // public function showSearchForm()
+    // {
+    //     return view('post.search'); // resources/views/posts/search.blade.php
+    // }
 }
 
 
