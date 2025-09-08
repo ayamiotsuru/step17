@@ -8,9 +8,12 @@ use App\Models\Post;
 class SearchController extends Controller
 {
     //リアルタイム検索のためのコントローラー
+    // (Request $request) はコントローラーメソッドの「引数」でLaravelが自動でRequestクラスを注入
+    // リクエストの内容（GET・POST・Cookie・Headerなど）を安全に扱える=リクエストに含まれるデータを取り出すために必要
     public function ajaxSearch(Request $request) {
         // ユーザーがフォームやAJAXで送ったqueryの値を$queryに入れて後の検索処理などに使えるように設定
         // query は単なる名前（キー）開発者が「検索ワード用の値だから query にする」と決めたもの。JavaScriptのfetchでも同じ名前を使う必要がある。
+        // $requestにリクエスト情報が入っており、->input('query')でqueryという名前の入力値を取り出している。（GET POST）
         $query = $request->input('query');
 
         $request = [];// 空配列で初期化しておく。
