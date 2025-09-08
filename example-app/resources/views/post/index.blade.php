@@ -28,11 +28,19 @@
                         {{ $post->created_at }} / {{ $post->user->name ?? '匿名' }}
                     </p>
                 </div>
+                {{-- タグ表示 --}}
+                <p>
+                    @foreach ($post->tags as $tag)
+                        <a href="{{ route('posts.search-by-tag', ['tag' => $tag->name]) }}" class="tag-link">
+                            {{ $tag->name }}
+                        </a>
+                    @endforeach
+                </p>
             </div>
         @endforeach
-        {{-- ページネーション --}}
+        {{-- ページネーション
         <div class="mb-4">
             {{ $posts->links() }}
-        </div>
+        </div> --}}
     </div>
 </x-app-layout>

@@ -23,4 +23,9 @@ class Post extends Model
     public function comments() {
         return $this->hasmany(Comment::class);
     }
+
+    // 一つの投稿は複数のタグを持つことができる
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 }

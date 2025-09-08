@@ -11,6 +11,10 @@ use App\Http\Controllers\SearchController;
 // Route::get('test', [TestController::class, 'test'])
 //     ->name('test');
 
+//タグ検索
+Route::get('/posts/search-by-tag', [PostController::class, 'searchByTag'])
+->name('posts.search-by-tag');
+
 //リアルタイム検索のためのルート
 Route::get('/ajax/search', [SearchController::class, 'ajaxSearch'])
 ->name('ajax.search');

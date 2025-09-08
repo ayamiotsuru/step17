@@ -26,6 +26,7 @@
                 {{old('body')}}
                 </textarea>
             </div>
+            <input type="text" name="tags" placeholder="タグをカンマで区切ってご入力ください">
             <x-primary-button class="mt-4">
                 送信する
             </x-primary-button>
